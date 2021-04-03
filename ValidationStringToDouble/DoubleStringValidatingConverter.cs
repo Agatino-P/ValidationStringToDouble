@@ -23,15 +23,15 @@ namespace ValidationStringToDouble
         {
             var matches = Regex.Match(text, @"^([\-]?\d+)(.?)(\d*)");
 
-            if (matches.Groups[2].Length == 0)
+            string separator = matches.Groups[2].Value;
+
+            if (separator==string.Empty)
             {
                 if (!double.TryParse(text, NumberStyles.Any, CultureInfo.InvariantCulture, out double value)) { return false; }
                 if (double.IsNaN(value) || double.IsInfinity(value)) { return false; }
                 ConvertedValue = value;
                 return true;
             }
-
-            string separator = matches.Groups[2].Value;
 
             if (separator == ".")
             {
