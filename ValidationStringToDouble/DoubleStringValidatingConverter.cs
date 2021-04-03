@@ -10,7 +10,7 @@ namespace ValidationStringToDouble
         public double ConvertedValue { get; private set; }
         public DoubleStringValidatingConverter()
         {
-            this.CascadeMode = CascadeMode.Stop;
+            //this.CascadeMode = CascadeMode.Stop;
 
             this.RuleFor(s => s)
                 .NotEmpty().WithMessage("Must Not Be Empty");

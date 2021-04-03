@@ -12,7 +12,7 @@
                                      IsDesignTimeCreatable=True}"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
-    <Grid>
+    <Grid Margin="4">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -24,7 +24,28 @@
         </Grid.ColumnDefinitions>
         <TextBlock Text="Text" />
         <TextBox Grid.Column="1" Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}">
-            <TextBox.Style>
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel>
+                        <Border BorderBrush="Crimson" BorderThickness="1">
+                            <AdornedElementPlaceholder />
+                        </Border>
+                        <Border
+                            Margin="20,0,0,0"
+                            BorderBrush="Crimson"
+                            BorderThickness="1">
+                            <ItemsControl ItemsSource="{Binding}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ErrorContent}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+            <!--<TextBox.Style>
                 <Style TargetType="TextBox">
                     <Style.Triggers>
                         <Trigger Property="Validation.HasError" Value="True">
@@ -38,10 +59,10 @@
                         </Trigger>
                     </Style.Triggers>
                 </Style>
-            </TextBox.Style>
+            </TextBox.Style>-->
         </TextBox>
 
-        <TextBlock Grid.Row="1" Text="Text" />
+        <TextBlock Grid.Row="1" Text="Double" />
         <TextBlock
             Grid.Row="1"
             Grid.Column="1"
